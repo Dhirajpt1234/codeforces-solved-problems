@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef vector<int> vi;
+typedef pair<int, int> pi;
+typedef long long int ll;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+typedef pair<string, string> pss;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<pii> vii;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+
+#define mp make_pair
+#define pb push_back
+
+inline string IntToString(ll a)
+{
+    char x[100];
+    sprintf(x, "%lld", a);
+    string s = x;
+    return s;
+}
+
+inline ll StringToInt(string a)
+{
+    char x[100];
+    ll res;
+    strcpy(x, a.c_str());
+    sscanf(x, "%lld", &res);
+    return res;
+}
+
+int main()
+{
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ll n;
+    cin >> n;
+
+    string s = IntToString(n);
+    int flag = 1;
+    int count = 0;
+
+    for (int i = 0; i < s.length(); i++)
+    {
+        if ((s[i] == '4' || s[i] == '7'))
+        {
+            count ++;
+        }
+       
+    }
+
+    if (count == 4 || count == 7)
+        cout << "YES\n";
+    else
+        cout << "NO\n";
+
+    return 0;
+}
