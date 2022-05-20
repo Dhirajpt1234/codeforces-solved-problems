@@ -31,42 +31,50 @@ typedef vector<vl> vvl;
         arr.pb(x);    \
     }
 #define mod 1e9 + 7
+#define countBits(n) (log2(n) + 1)
 
 void DhirajThorat()
 {
     // You are the best !!!!
 }
 
+inline bool is_same2(string s)
+{
+    for (int i = 1; i < s.length(); i++)
+    {
+        if (s[i] != s[i - 1])
+            return false;
+    }
+    return true;
+}
+
 void Dhiraj()
 {
-    int n;
-    cin >> n;
+    string s;
+    cin >> s;
 
-    if (n % 2 == 0)
-    {
-        for (int i = 1; i <= n; i++)
-        {
-            if (i & 1)
-                cout << i + 1 << ' ';
-            else
-                cout << i - 1 << ' ';
-        }
-        cout << '\n';
-    }
+    int n = s.length();
+    if (is_same2(s) && n != 1)
+        cout << 1 << '\n';
     else
-    {
 
-        for (int i = 1; i <= n - 3; i++)
+    {
+        int r = 0, g = 0, w = 0;
+        map<char, int> m;
+        fr(i, n)
         {
-            if (i & 1)
-                cout << i + 1 << ' ';
+            m[s[i]]++;
+        }
+        int c2 = 0, c1 = 0;
+        for (auto &[x, y] : m)
+        {
+            if (y > 1)
+                c2++;
             else
-                cout << i - 1 << ' ';
+                c1++;
         }
 
-        cout << n << ' ' << n - 2 << ' ' << n - 1 << ' ';
-
-        cout << '\n';
+        cout << c2 + (c1 / 2) << '\n';
     }
 }
 

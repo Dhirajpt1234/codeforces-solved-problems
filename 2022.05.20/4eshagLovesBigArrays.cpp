@@ -31,6 +31,7 @@ typedef vector<vl> vvl;
         arr.pb(x);    \
     }
 #define mod 1e9 + 7
+#define countBits(n) (log2(n) + 1)
 
 void DhirajThorat()
 {
@@ -41,33 +42,22 @@ void Dhiraj()
 {
     int n;
     cin >> n;
-
-    if (n % 2 == 0)
+    int arr[n];
+    int mn = INT_MAX;
+    fr(i, n)
     {
-        for (int i = 1; i <= n; i++)
-        {
-            if (i & 1)
-                cout << i + 1 << ' ';
-            else
-                cout << i - 1 << ' ';
-        }
-        cout << '\n';
+        cin >> arr[i];
+        mn = min(mn, arr[i]);
     }
-    else
+
+    int cnt = 0;
+    fr(i, n)
     {
-
-        for (int i = 1; i <= n - 3; i++)
-        {
-            if (i & 1)
-                cout << i + 1 << ' ';
-            else
-                cout << i - 1 << ' ';
-        }
-
-        cout << n << ' ' << n - 2 << ' ' << n - 1 << ' ';
-
-        cout << '\n';
+        if (arr[i] != mn)
+            cnt++;
     }
+
+    cout << cnt << '\n';
 }
 
 int main()

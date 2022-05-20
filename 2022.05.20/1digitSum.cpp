@@ -42,32 +42,7 @@ void Dhiraj()
     int n;
     cin >> n;
 
-    if (n % 2 == 0)
-    {
-        for (int i = 1; i <= n; i++)
-        {
-            if (i & 1)
-                cout << i + 1 << ' ';
-            else
-                cout << i - 1 << ' ';
-        }
-        cout << '\n';
-    }
-    else
-    {
-
-        for (int i = 1; i <= n - 3; i++)
-        {
-            if (i & 1)
-                cout << i + 1 << ' ';
-            else
-                cout << i - 1 << ' ';
-        }
-
-        cout << n << ' ' << n - 2 << ' ' << n - 1 << ' ';
-
-        cout << '\n';
-    }
+    cout << (n + 1) / 10 << '\n';
 }
 
 int main()

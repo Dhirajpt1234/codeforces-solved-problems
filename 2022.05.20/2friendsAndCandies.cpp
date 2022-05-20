@@ -42,31 +42,25 @@ void Dhiraj()
     int n;
     cin >> n;
 
-    if (n % 2 == 0)
+    int arr[n];
+    ll sum = 0;
+    fr(i, n)
     {
-        for (int i = 1; i <= n; i++)
-        {
-            if (i & 1)
-                cout << i + 1 << ' ';
-            else
-                cout << i - 1 << ' ';
-        }
-        cout << '\n';
+        cin >> arr[i];
+        sum += arr[i];
     }
+
+    if ((sum % n) != 0)
+        cout << -1 << endl;
     else
     {
-
-        for (int i = 1; i <= n - 3; i++)
+        int flag = sum / n, cnt = 0;
+        fr(i, n)
         {
-            if (i & 1)
-                cout << i + 1 << ' ';
-            else
-                cout << i - 1 << ' ';
+            if (arr[i] > flag)
+                cnt++;
         }
-
-        cout << n << ' ' << n - 2 << ' ' << n - 1 << ' ';
-
-        cout << '\n';
+        cout << cnt << endl;
     }
 }
 
