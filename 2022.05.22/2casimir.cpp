@@ -38,37 +38,25 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int k;
-    cin >> k;
+    string s;
+    cin >> s;
 
-    int preRoot = sqrt(k);
-    int root = preRoot + 1;
+    map<char, int> m;
+    fr(i, s.length())
+    {
+        m[s[i]]++;
+    }
 
-    int square = root * root;
-    int i = 1, j = 1;
-    if ((preRoot * preRoot) == k)
-    {
-        i = preRoot;
-        j = 1;
-    }
-    else if ((square - k) <= preRoot)
-    {
-        i = root;
-        j += (square - k);
-    }
+    if (m['B'] == (m['A'] + m['C']))
+        cout << "YES\n";
     else
-    {
-        j = root;
-        i = root - ((square - preRoot) - k);
-    }
-
-    cout << i << ' ' << j << '\n';
+        cout << "NO\n";
 }
 
 int main()
 {
 
-    // fastIO;
+    fastIO;
 
     DhirajThorat();
     int t;

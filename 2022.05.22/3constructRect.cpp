@@ -38,37 +38,23 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int k;
-    cin >> k;
+    int a, b, c;
+    cin >> a >> b >> c;
 
-    int preRoot = sqrt(k);
-    int root = preRoot + 1;
-
-    int square = root * root;
-    int i = 1, j = 1;
-    if ((preRoot * preRoot) == k)
-    {
-        i = preRoot;
-        j = 1;
-    }
-    else if ((square - k) <= preRoot)
-    {
-        i = root;
-        j += (square - k);
-    }
+    if ((a == b) && (c >= 2 && ((c & 1) == 0)))
+        cout << "YES\n";
+    else if ((c == b) && (a >= 2 && ((a & 1) == 0)))
+        cout << "YES\n";
+    else if ((a == c) && (b >= 2 && ((b & 1) == 0)))
+        cout << "YES\n";
     else
-    {
-        j = root;
-        i = root - ((square - preRoot) - k);
-    }
-
-    cout << i << ' ' << j << '\n';
+        cout << "NO\n";
 }
 
 int main()
 {
 
-    // fastIO;
+    fastIO;
 
     DhirajThorat();
     int t;
