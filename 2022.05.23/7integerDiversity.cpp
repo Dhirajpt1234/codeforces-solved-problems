@@ -38,20 +38,30 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int a, b, c;
-    cin >> a >> b >> c;
-    int m = max(a, max(b, c));
+    int n;
+    cin >> n;
 
-    if ((a == b) && (c >= 2 && ((c & 1) == 0)))
-        cout << "YES\n";
-    else if ((c == b) && (a >= 2 && ((a & 1) == 0)))
-        cout << "YES\n";
-    else if ((a == c) && (b >= 2 && ((b & 1) == 0)))
-        cout << "YES\n";
-    else if (m == (a + b + c - m))
-        cout << "YES\n";
-    else
-        cout << "NO\n";
+    int arr[n];
+    fr(i, n) cin >> arr[i];
+    map<int, int> m;
+    fr(i, n)
+    {
+        m[abs(arr[i])]++;
+    }
+    int zero = 0;
+    int cnt = 0;
+    int normal = 0;
+    for (auto &[x, y] : m)
+    {
+        if (x == 0)
+            zero = 1;
+        else if (y > 1)
+            cnt += 2;
+        else if (y == 1)
+            cnt++;
+    }
+
+    cout << cnt + zero << '\n';
 }
 
 int main()

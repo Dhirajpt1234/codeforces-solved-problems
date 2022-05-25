@@ -36,22 +36,42 @@ void DhirajThorat()
     // You are the best !!!!
 }
 
+bool cmp(pair<int, int> a, pair<int, int> b)
+{
+    if (a.first != b.first)
+        return a.first < b.first;
+    return b.second < a.second;
+}
+
 void Dhiraj()
 {
-    int a, b, c;
-    cin >> a >> b >> c;
-    int m = max(a, max(b, c));
+    int n, ram;
+    cin >> n >> ram;
 
-    if ((a == b) && (c >= 2 && ((c & 1) == 0)))
-        cout << "YES\n";
-    else if ((c == b) && (a >= 2 && ((a & 1) == 0)))
-        cout << "YES\n";
-    else if ((a == c) && (b >= 2 && ((b & 1) == 0)))
-        cout << "YES\n";
-    else if (m == (a + b + c - m))
-        cout << "YES\n";
-    else
-        cout << "NO\n";
+    vii v(n);
+    fr(i, n)
+    {
+        int x;
+        cin >> x;
+        v[i].first = x;
+    }
+    fr(i, n)
+    {
+        int x;
+        cin >> x;
+        v[i].second = x;
+    }
+
+    sort(v.begin(), v.end(), cmp);
+    fr(i, n)
+    {
+        if (ram >= v[i].first)
+            ram += v[i].second;
+        else
+            break;
+    }
+
+    cout << ram << '\n';
 }
 
 int main()

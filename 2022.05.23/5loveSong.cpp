@@ -31,6 +31,8 @@ typedef vector<vl> vvl;
 #define countBits(n) (log2(n) + 1)
 int mod = 1e7 + 7;
 
+vector<int> dp(1e5 + 5);
+
 void DhirajThorat()
 {
     // You are the best !!!!
@@ -38,20 +40,28 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int a, b, c;
-    cin >> a >> b >> c;
-    int m = max(a, max(b, c));
+    int n, q;
+    cin >> n >> q;
 
-    if ((a == b) && (c >= 2 && ((c & 1) == 0)))
-        cout << "YES\n";
-    else if ((c == b) && (a >= 2 && ((a & 1) == 0)))
-        cout << "YES\n";
-    else if ((a == c) && (b >= 2 && ((b & 1) == 0)))
-        cout << "YES\n";
-    else if (m == (a + b + c - m))
-        cout << "YES\n";
-    else
-        cout << "NO\n";
+    string s;
+    cin >> s;
+    int sum = 0;
+    dp[0] = 0;
+    for (int i = 0; i < s.length(); i++)
+    {
+        sum += s[i] - 'a' + 1;
+        dp[i + 1] = sum;
+    }
+    dp[s.length() + 1] = 0;
+
+    while (q--)
+    {
+        int l, r;
+        cin >> l >> r;
+
+        int ans = dp[r] - dp[l-1];
+        cout << ans << '\n';
+    }
 }
 
 int main()
@@ -60,12 +70,12 @@ int main()
     fastIO;
 
     DhirajThorat();
-    int t;
-    cin >> t;
-    while (t--)
-    {
-        Dhiraj();
-    }
+    // int t;
+    // cin >> t;
+    // while (t--)
+    // {
+    Dhiraj();
+    // }
 
     return 0;
 }
