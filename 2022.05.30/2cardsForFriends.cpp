@@ -38,36 +38,35 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int n;
-    cin >> n;
+    int w, h, n;
+    cin >> w >> h >> n;
 
-    vi arr(n);
-    fr(i, n) cin >> arr[i];
-
-    sort(arr.begin(), arr.end());
-
-    int i = 1;
-    while (i < (n - 1))
+    int cnt = 1;
+    while (((w & 1) == 0) || ((h & 1) == 0))
     {
-        swap(arr[i], arr[i + 1]);
-        if (arr[i - 1] >= arr[i] || arr[i] <= arr[i + 1])
+        if ((w & 1) == 0)
         {
-            cout << "NO\n";
+            w /= 2;
+            cnt *= 2;
+        }
+        if ((h & 1) == 0)
+        {
+            h /= 2;
+            cnt *= 2;
+        }
+        if (cnt >= n)
+        {
+            cout << "YES\n";
             return;
         }
-        i++;
-        i++;
     }
-    if (arr[n - 1] >= arr[n - 2] && arr[0] >= arr[n - 1])
-        cout << "NO\n";
-    else if (arr[n - 1] <= arr[n - 2] && arr[0] <= arr[n - 1])
-        cout << "NO\n";
-    else
+    if (cnt >= n)
     {
         cout << "YES\n";
-        fr(i, n) cout << arr[i] << ' ';
-        cout << '\n';
+        return;
     }
+    cout << "NO\n";
+    return;
 }
 
 int main()
@@ -83,15 +82,5 @@ int main()
         Dhiraj();
     }
 
-    return 0;
-}
-
-#include <bits/stdc++.h>
-using namespace std;
-int main()
-{
-    
-    stack <int> s;
-    
     return 0;
 }

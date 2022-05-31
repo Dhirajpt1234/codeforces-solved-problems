@@ -38,36 +38,51 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int n;
-    cin >> n;
+    int n, m, r, c;
+    cin >> n >> m >> r >> c;
 
-    vi arr(n);
-    fr(i, n) cin >> arr[i];
+    int one = 0, two = 0, zero = 0;
+    char arr[n][m];
 
-    sort(arr.begin(), arr.end());
-
-    int i = 1;
-    while (i < (n - 1))
+    fr(i, n)
     {
-        swap(arr[i], arr[i + 1]);
-        if (arr[i - 1] >= arr[i] || arr[i] <= arr[i + 1])
+        fr(j, m)
         {
-            cout << "NO\n";
-            return;
+            cin >> arr[i][j];
+            if (arr[i][j] == 'B')
+                two = 1;
         }
-        i++;
-        i++;
     }
-    if (arr[n - 1] >= arr[n - 2] && arr[0] >= arr[n - 1])
-        cout << "NO\n";
-    else if (arr[n - 1] <= arr[n - 2] && arr[0] <= arr[n - 1])
-        cout << "NO\n";
-    else
+
+    for (int i = 0; i < n; i++)
     {
-        cout << "YES\n";
-        fr(i, n) cout << arr[i] << ' ';
-        cout << '\n';
+        if (arr[i][c - 1] == 'B')
+        {
+            one = 1;
+            break;
+        }
     }
+
+    for (int i = 0; i < m; i++)
+    {
+        if (arr[r - 1][i] == 'B')
+        {
+            one = 1;
+            break;
+        }
+    }
+
+    if (arr[r - 1][c - 1] == 'B')
+        zero = 1;
+
+    if (zero)
+        cout << 0;
+    else if (one)
+        cout << 1;
+    else if (two)
+        cout << 2;
+    else
+        cout << -1;
 }
 
 int main()
@@ -81,17 +96,8 @@ int main()
     while (t--)
     {
         Dhiraj();
+        cout << endl;
     }
 
-    return 0;
-}
-
-#include <bits/stdc++.h>
-using namespace std;
-int main()
-{
-    
-    stack <int> s;
-    
     return 0;
 }

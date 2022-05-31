@@ -41,33 +41,20 @@ void Dhiraj()
     int n;
     cin >> n;
 
-    vi arr(n);
-    fr(i, n) cin >> arr[i];
+    int div = n / 7;
+    int a = div * 7;
+    int b = 7 * (div + 1);
+    int c = 7 * (div + 2);
 
-    sort(arr.begin(), arr.end());
+    int base = n / 10;
 
-    int i = 1;
-    while (i < (n - 1))
-    {
-        swap(arr[i], arr[i + 1]);
-        if (arr[i - 1] >= arr[i] || arr[i] <= arr[i + 1])
-        {
-            cout << "NO\n";
-            return;
-        }
-        i++;
-        i++;
-    }
-    if (arr[n - 1] >= arr[n - 2] && arr[0] >= arr[n - 1])
-        cout << "NO\n";
-    else if (arr[n - 1] <= arr[n - 2] && arr[0] <= arr[n - 1])
-        cout << "NO\n";
+    if (a / 10 == base)
+        cout << a;
+    else if (b / 10 == base)
+        cout << b;
     else
-    {
-        cout << "YES\n";
-        fr(i, n) cout << arr[i] << ' ';
-        cout << '\n';
-    }
+        cout << c;
+    // cout << endl;
 }
 
 int main()
@@ -81,17 +68,8 @@ int main()
     while (t--)
     {
         Dhiraj();
+        cout << endl;
     }
 
-    return 0;
-}
-
-#include <bits/stdc++.h>
-using namespace std;
-int main()
-{
-    
-    stack <int> s;
-    
     return 0;
 }

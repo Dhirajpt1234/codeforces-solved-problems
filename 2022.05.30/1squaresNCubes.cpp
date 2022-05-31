@@ -29,7 +29,8 @@ typedef vector<vl> vvl;
         arr.pb(x);    \
     }
 #define countBits(n) (log2(n) + 1)
-int mod = 1e7 + 7;
+
+int mod = 1e9 + 7;
 
 void DhirajThorat()
 {
@@ -41,33 +42,17 @@ void Dhiraj()
     int n;
     cin >> n;
 
-    vi arr(n);
-    fr(i, n) cin >> arr[i];
-
-    sort(arr.begin(), arr.end());
-
-    int i = 1;
-    while (i < (n - 1))
+    set<int> s;
+    for (int i = 1; (i * i) <= n; i++)
     {
-        swap(arr[i], arr[i + 1]);
-        if (arr[i - 1] >= arr[i] || arr[i] <= arr[i + 1])
-        {
-            cout << "NO\n";
-            return;
-        }
-        i++;
-        i++;
+        s.insert(i * i);
     }
-    if (arr[n - 1] >= arr[n - 2] && arr[0] >= arr[n - 1])
-        cout << "NO\n";
-    else if (arr[n - 1] <= arr[n - 2] && arr[0] <= arr[n - 1])
-        cout << "NO\n";
-    else
+    for (int i = 1; (i * i * i) <= n; i++)
     {
-        cout << "YES\n";
-        fr(i, n) cout << arr[i] << ' ';
-        cout << '\n';
+        s.insert(i * i * i);
     }
+
+    cout << s.size() << endl;
 }
 
 int main()
@@ -83,15 +68,5 @@ int main()
         Dhiraj();
     }
 
-    return 0;
-}
-
-#include <bits/stdc++.h>
-using namespace std;
-int main()
-{
-    
-    stack <int> s;
-    
     return 0;
 }
