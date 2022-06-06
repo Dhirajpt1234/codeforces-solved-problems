@@ -36,33 +36,26 @@ void DhirajThorat()
     // You are the best !!!!
 }
 
-const int N = 101;
-vector<bool> isprime(N, true);
-
 void Dhiraj()
 {
-    int k;
-    cin >> k;
+    int n;
+    cin >> n;
 
-    string s;
-    cin >> s;
-
-    for (int i = 0; i < k; i++)
+    if (n == 1)
+        cout << 9;
+    else if (n == 2)
+        cout << 98;
+    else if (n == 3)
+        cout << 989;
+    else
     {
-        if (s[i] == '1' || s[i] == '4' || s[i] == '6' || s[i] == '8' || s[i] == '9')
+        cout<<989;
+        n -= 3;
+        int i = 0;
+        while (n--)
         {
-            cout << 1 << '\n';
-            cout << s[i];
-            return;
-        }
-    }
-
-    for (int i = 0; i < k; i++)
-    {
-        for (int j = i + 1; j < k; j++)
-        {
-            int x = (s[i] - '0') * 10 + (s[j] - '0');
-            
+            cout << i % 10;
+            i++;
         }
     }
 }
@@ -70,18 +63,7 @@ void Dhiraj()
 int main()
 {
 
-    fastIO;
-
-    isprime[0] = false;
-
-    for (int i = 2; i < N; i++)
-    {
-        if (isprime[i] == true)
-            for (int j = (2 * i); j < N; j += i)
-            {
-                isprime[j] = false;
-            }
-    }
+    // fastIO;
 
     DhirajThorat();
     int t;
