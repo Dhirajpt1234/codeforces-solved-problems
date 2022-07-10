@@ -32,11 +32,41 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    long long t, n, x;
 
-    cin >> n >> x >> t;
-    long long a = min(t / x, n - 1);
-    cout << (n - a) * a + (a * (a - 1)) / 2 << endl;
+    int a, b;
+    cin >> a >> b;
+
+    int x = 0;
+
+    if (a % 4 == 1)
+    {
+        x = a - 1;
+    }
+    else if (a % 4 == 2)
+    {
+        x = 1;
+    }
+    else if (a % 4 == 3)
+    {
+        x = a;
+    }
+    else
+    {
+        x = 0;
+    }
+
+    if (x == b)
+    {
+        cout << a;
+    }
+    else if ((x ^ b) != a)
+    {
+        cout << a + 1;
+    }
+    else
+    {
+        cout << a + 2;
+    }
 }
 
 int main()

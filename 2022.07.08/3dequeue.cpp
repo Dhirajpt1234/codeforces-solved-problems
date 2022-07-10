@@ -30,13 +30,39 @@ void DhirajThorat()
     // You are the best !!!!
 }
 
+void change(vector<int> &arr, int s, int n)
+{
+    cout << "hii\n";
+    int small = *min_element(arr.begin() + s, arr.end());
+    // cout << s << " 1- " << small << endl;
+    if (small == s && s < n)
+    {
+        change(arr, s + 1, n);
+    }
+    else if (small != s)
+    {
+        // cout << s << " 2- " << small << endl;
+        swap(arr[0], arr[small]);
+        return;
+    }
+    return;
+}
+
 void Dhiraj()
 {
-    long long t, n, x;
-
-    cin >> n >> x >> t;
-    long long a = min(t / x, n - 1);
-    cout << (n - a) * a + (a * (a - 1)) / 2 << endl;
+    int n, a;
+    cin >> n;
+    deque<int> d;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a;
+        if (d.empty() || a < d[0])
+            d.push_front(a);
+        else
+            d.push_back(a);
+    }
+    for (int x : d)
+        cout << x << ' ';
 }
 
 int main()

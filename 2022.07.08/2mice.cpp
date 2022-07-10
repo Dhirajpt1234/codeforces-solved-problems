@@ -32,11 +32,38 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    long long t, n, x;
+    int n, k;
+    cin >> n >> k;
 
-    cin >> n >> x >> t;
-    long long a = min(t / x, n - 1);
-    cout << (n - a) * a + (a * (a - 1)) / 2 << endl;
+    vector<ll> arr;
+    fr(i, k)
+    {
+        int x;
+        cin >> x;
+        arr.push_back(x);
+    }
+    sort(arr.begin(), arr.end());
+
+    int ct = 0;
+    int cat = 0;
+    int dis = 0;
+
+    for (int i = k - 1; i >= 0; i--)
+    {
+        int pos = arr[i];
+
+        if (dis < pos && dis < n)
+        {
+            ct++;
+            cat++;
+            dis += (n - pos);
+            // cout << dis << " - " << cat << " --  " << pos << endl;
+        }
+        else
+            break;
+    }
+
+    cout << ct;
 }
 
 int main()

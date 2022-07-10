@@ -37,37 +37,27 @@ void Dhiraj()
     int n = s.length();
     int m = t.length();
 
-    vector<int> sarr(2, 0), tarr(2, 0);
+    int l = lcm(n, m);
+    string s1 = "";
+    string t1 = "";
 
-    for (int i = 0; i < s.length(); i++)
+    for (int i = 0; i < l; i++)
+        s1.push_back(s[i % n]);
+    for (int i = 0; i < l; i++)
+        t1.push_back(t[i % m]);
+
+    // cout << s1 << endl;
+    // cout << t1 << endl;
+
+    for (int i = 0; i < l; i++)
     {
-        if (s[i] == 'a')
-            sarr[0]++;
-        else
-            sarr[1]++;
-    }
-
-    for (int i = 0; i < t.length(); i++)
-    {
-        if (t[i] == 'a')
-            sarr[0]++;
-        else
-            sarr[1]++;
-    }
-
-    int r1 = min(sarr[0], sarr[1]);
-    int r2 = min(tarr[0], tarr[1]);
-
-    for (int i = 0; i < 2; i++)
-        if (sarr[0] / r1 != sarr[1] / r2)
+        if (s1[i] != t1[i])
         {
             cout << -1;
             return;
         }
-        
-    for (int i = 0; i < lcm(r3, r4); i++)
-        for (int j = 0; j < (s.length() / r1); j++)
-            cout << s[i];
+    }
+    cout << s1;
 }
 
 int main()

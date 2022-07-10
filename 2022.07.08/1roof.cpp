@@ -32,11 +32,41 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    long long t, n, x;
+    int n;
+    cin >> n;
+    if ((n & (n - 1)) != 0)
+    {
+        int m = countBits(n);
+        // cout << m << " -- \n";
+        m--;
+        int l = 1 << m;
+        // cout << " --- " << l << endl;
+        for (int i = l - 1; i >= 0; i--)
+        {
+            cout << i << ' ';
+        }
+        if (n > l)
+        {
+            cout << l << ' ';
+            n--;
+            for (int i = n; i > l; i--)
+                cout << i << " ";
+        }
+    }
+    else
+    {
+        int m = countBits(n);
+        m--;
+        int l = 1 << m;
+        // cout << "hii == " << l;
 
-    cin >> n >> x >> t;
-    long long a = min(t / x, n - 1);
-    cout << (n - a) * a + (a * (a - 1)) / 2 << endl;
+        int a = l / 2;
+
+        for (int i = a - 1; i >= 0; i--)
+            cout << i << ' ';
+        for (int i = a; i < l; i++)
+            cout << i << ' ';
+    }
 }
 
 int main()

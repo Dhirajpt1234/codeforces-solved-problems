@@ -32,17 +32,16 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    long long t, n, x;
+    int a, b, n, s;
 
-    cin >> n >> x >> t;
-    long long a = min(t / x, n - 1);
-    cout << (n - a) * a + (a * (a - 1)) / 2 << endl;
+    cin >> a >> b >> n >> s;
+    cout << (min(s / n, a) * n + b >= s ? "YES" : "NO") << endl;
 }
 
 int main()
 {
 
-    // fastIO;
+    fastIO;
 
     DhirajThorat();
     int t = 1;
