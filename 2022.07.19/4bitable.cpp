@@ -39,31 +39,60 @@ void Dhiraj()
     string s, r;
     cin >> s >> r;
 
+    int arr[n];
     int ans = 0;
-    int i = 0;
-    while (i < n)
+    fr(i, n)
     {
-        if ((int)s[i] + (int)r[i] == 1)
+        if ((s[i] - '0') == (r[i] - '0'))
         {
-            ans += 2;
-            i++;
-        }
-        else if ((int)s[i] + (int)r[i] == 0)
-        {
-            for (int j = i + 1; j < n; j++)
+            if (s[i] - '0' == 0)
             {
-                if ((int)s[j] + (int)r[j] == 2)
+                arr[i] = 1;
+            }
+            else
+                arr[i] = 0;
+        }
+        else
+        {
+            arr[i] = -1;
+            ans += 2;
+        }
+    }
+
+    fr(i, n)
+    {
+
+        if (i == n - 1)
+        {
+            if (arr[i] == -1)
+            {
+                continue;
+            }
+            else
+            {
+                ans += arr[i];
+            }
+        }
+        else
+        {
+            if (arr[i] == -1)
+            {
+                continue;
+            }
+            else
+            {
+                if (arr[i] == 0 && arr[i + 1] == 1 && i < (n - 1))
                 {
                     ans += 2;
-                    i = j + 1;
-                    break;
+                    i++;
                 }
-                else if ((int)s[j] + (int)r[j] == 1)
+                else if (arr[i] == 1 && arr[i + 1] == 0 && i < (n - 1))
                 {
-                    ans += 3;
-                    i = j + 1;
-                    break;
+                    ans += 2;
+                    i++;
                 }
+                else
+                    ans += arr[i];
             }
         }
     }
