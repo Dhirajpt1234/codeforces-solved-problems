@@ -31,31 +31,47 @@ void DhirajThorat()
     // You are the best !!!!
 }
 
+
+//This is recursive method of finding the a raised to b mod m when all the values of a , b , mod are integer.
+ll binExpoRec(int a, int b)
+{
+    if (b == 0)
+        return 1;
+    int result = binExpoRec(a, b / 2);
+    if (b & 1)
+        return ((a % mod) * ((1LL * result * result) % mod)) % mod;
+    return ((1LL * result * result) % mod);
+}
+
+
+
 void Dhiraj()
 {
-    int n, k;
-    cin >> n >> k;
-
-    vector<pair<int, int>> arr(n);
-
-    for (int i = 0; i < n; i++)
+    bool arr[1001][5];
+    int n, i, j, k;
+    cin >> n;
+    for (i = 0; i < n; i++)
+        for (j = 0; j < 5; j++)
+            cin >> arr[i][j];
+    for (i = 0; i < 5; i++)
     {
-        cin >> arr[i].first;
-        arr[i].second = i;
+        for (j = i + 1; j < 5; j++)
+        {
+            int a = 0, b = 0, c = 0;
+            for (k = 0; k < n; k++)
+            {
+                a += (arr[k][i]);
+                b += (arr[k][j]);
+                c += (arr[k][i] && arr[k][j]);
+            }
+            if ((a + b - c == n) && (a >= n / 2) && (b >= n / 2))
+            {
+                cout << "YES";
+                return;
+            }
+        }
     }
-
-    sort(arr.begin(), arr.end());
-    int cnt = 0;
-    for (int i = 0; i < n - 1; i++)
-    {
-        if (arr[i].second + 1 != arr[i + 1].second)
-            cnt++;
-    }
-
-    if (k > cnt)
-        cout << "YES";
-    else
-        cout << "NO";
+    cout << "NO";
 }
 
 int32_t main()

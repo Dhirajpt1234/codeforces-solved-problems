@@ -31,64 +31,35 @@ void DhirajThorat()
     // You are the best !!!!
 }
 
-// This is iterative method of finding the a raised to b mod m when all the values of a , b , mod are integer.
-// for (a/b)%mod --> use ( (a%b) * (binExpoIter(b , mod-2 , mod) ) % mod.
-int binExpoIter(int a, int b, int m)
-{
-    int ans = 1;
-    while (b)
-    {
-        if (b & 1)
-        {
-            ans = ((ans % m) * 1LL * (a % m)) % m;
-        }
-        a = ((a % m) * 1LL * (a % m)) % m;
-        b >>= 1;
-    }
-    return ans;
-}
-
 void Dhiraj()
 {
-    int a, b;
-    int ans = INT_MAX, pre = 0;
-    cin >> a >> b;
+    int n, k;
+    cin >> n >> k;
 
-    if (!a)
-    {
-        cout << 0;
-        return;
-    }
+    vii arr(n);
+    fr(i, n) { cin >> arr[i].first >> arr[i].second; }
 
-    if (b == 1)
+    fr(i, n)
     {
-        b++;
-        pre++;
-    }
-
-    for (int i = b; i <= b + 30; i++)
-    {
-        int r = 0;
-        // cout << i << " : ";
-        int res = 0;
-        int A = a, B = i;
-        res = i - b;
-        while (A > 0)
+        int flag = 1;
+        fr(j, n)
         {
-            // cout << A << endl;
-            A /= B;
-            res++;
+            if ((abs(arr[i].first - arr[j].first) + abs(arr[i].second - arr[j].second)) <= k)
+                flag = 1;
+            else
+            {
+                flag = 0;
+                break;
+            }
         }
-        // cout << "here __ " << res << endl;
-        if (ans == res)
-            r++;
-
-        ans = min(ans, res);
-        if (r == 3)
-            break;
+        if (flag)
+        {
+            cout << 1;
+            return;
+        }
     }
 
-    cout << ans + pre;
+    cout << -1;
 }
 
 int32_t main()

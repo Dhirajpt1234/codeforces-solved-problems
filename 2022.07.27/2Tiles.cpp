@@ -33,29 +33,45 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int n, k;
-    cin >> n >> k;
+    int n, m, x, y;
+    cin >> n >> m >> x >> y;
+    vector<string> s(n);
+    fr(i, n) { cin >> s[i]; }
 
-    vector<pair<int, int>> arr(n);
+    int xval = 0, mix = 0;
 
-    for (int i = 0; i < n; i++)
+    fr(i, n)
     {
-        cin >> arr[i].first;
-        arr[i].second = i;
+        fr(j, m)
+        {
+            if (s[i][j] == '.')
+            {
+                int k = 0;
+                for (int l = 0; l + j < m; l++)
+                {
+                    if (s[i][j + l] != '.')
+                        break;
+                    else
+                    {
+                        k++;
+                    }
+                }
+
+                // cout << " k =  " << k << endl;
+                xval += k * x;
+                if (k % 2 == 1)
+                {
+                    mix += (x + (y * (k / 2)));
+                }
+                else
+                    mix += y * (k / 2);
+
+                j += k;
+            }
+        }
     }
 
-    sort(arr.begin(), arr.end());
-    int cnt = 0;
-    for (int i = 0; i < n - 1; i++)
-    {
-        if (arr[i].second + 1 != arr[i + 1].second)
-            cnt++;
-    }
-
-    if (k > cnt)
-        cout << "YES";
-    else
-        cout << "NO";
+    cout << min(mix, xval);
 }
 
 int32_t main()

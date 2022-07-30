@@ -31,64 +31,47 @@ void DhirajThorat()
     // You are the best !!!!
 }
 
-// This is iterative method of finding the a raised to b mod m when all the values of a , b , mod are integer.
-// for (a/b)%mod --> use ( (a%b) * (binExpoIter(b , mod-2 , mod) ) % mod.
-int binExpoIter(int a, int b, int m)
-{
-    int ans = 1;
-    while (b)
-    {
-        if (b & 1)
-        {
-            ans = ((ans % m) * 1LL * (a % m)) % m;
-        }
-        a = ((a % m) * 1LL * (a % m)) % m;
-        b >>= 1;
-    }
-    return ans;
-}
-
 void Dhiraj()
 {
-    int a, b;
-    int ans = INT_MAX, pre = 0;
-    cin >> a >> b;
+    int n, m;
+    cin >> n >> m;
 
-    if (!a)
+    vector<int> unhappiness(n), freq(n + 1, 0);
+    fr(i, n) { cin >> unhappiness[i]; }
+
+    vector<pair<int, int>> groups(m);
+    fr(i, m)
+    {
+        cin >> groups[i].first >> groups[i].second;
+        freq[groups[i].first]++;
+        freq[groups[i].second]++;
+    }
+
+    if (m & 1)
+    {
+        int ans = INT_MAX;
+        for (int i = 1; i <= n; i++)
+        {
+            if (freq[i] & 1)
+            {
+                ans = min(ans, unhappiness[i - 1]);
+            }
+        }
+
+        fr(i, m)
+        {
+            if ((freq[groups[i].first] % 2 == 0) && (freq[groups[i].second] % 2 == 0))
+            {
+                ans = min(ans, unhappiness[groups[i].first - 1] + unhappiness[groups[i].second - 1]);
+            }
+        }
+
+        cout << ans;
+    }
+    else
     {
         cout << 0;
-        return;
     }
-
-    if (b == 1)
-    {
-        b++;
-        pre++;
-    }
-
-    for (int i = b; i <= b + 30; i++)
-    {
-        int r = 0;
-        // cout << i << " : ";
-        int res = 0;
-        int A = a, B = i;
-        res = i - b;
-        while (A > 0)
-        {
-            // cout << A << endl;
-            A /= B;
-            res++;
-        }
-        // cout << "here __ " << res << endl;
-        if (ans == res)
-            r++;
-
-        ans = min(ans, res);
-        if (r == 3)
-            break;
-    }
-
-    cout << ans + pre;
 }
 
 int32_t main()

@@ -31,64 +31,42 @@ void DhirajThorat()
     // You are the best !!!!
 }
 
-// This is iterative method of finding the a raised to b mod m when all the values of a , b , mod are integer.
-// for (a/b)%mod --> use ( (a%b) * (binExpoIter(b , mod-2 , mod) ) % mod.
-int binExpoIter(int a, int b, int m)
-{
-    int ans = 1;
-    while (b)
-    {
-        if (b & 1)
-        {
-            ans = ((ans % m) * 1LL * (a % m)) % m;
-        }
-        a = ((a % m) * 1LL * (a % m)) % m;
-        b >>= 1;
-    }
-    return ans;
-}
-
 void Dhiraj()
 {
-    int a, b;
-    int ans = INT_MAX, pre = 0;
-    cin >> a >> b;
+    int n;
+    cin >> n;
 
-    if (!a)
-    {
-        cout << 0;
-        return;
-    }
+    string s;
+    cin >> s;
 
-    if (b == 1)
+    int ans = 0;
+    int a = 0;
+    for (int i = 0; i < s.length(); i++)
     {
-        b++;
-        pre++;
-    }
-
-    for (int i = b; i <= b + 30; i++)
-    {
-        int r = 0;
-        // cout << i << " : ";
-        int res = 0;
-        int A = a, B = i;
-        res = i - b;
-        while (A > 0)
+        if (i == 0)
         {
-            // cout << A << endl;
-            A /= B;
-            res++;
+            if (s[i] == '(')
+                a++;
+            else
+            {
+                a--;
+            }
         }
-        // cout << "here __ " << res << endl;
-        if (ans == res)
-            r++;
+        else
+        {
+            if (a >= 0 && s[i] == '(')
+                a++;
+            else if (a < 0 && s[i] == '(')
+                a = 1;
+            else if (s[i] == ')')
+                a--;
+        }
 
-        ans = min(ans, res);
-        if (r == 3)
-            break;
+        if (a < 0)
+            ans++;
     }
 
-    cout << ans + pre;
+    cout << ans;
 }
 
 int32_t main()

@@ -18,13 +18,14 @@ typedef vector<vl> vvl;
     cout.tie(0);
 #define maxOfVec(a) *max_element(a.begin(), a.end())
 #define minOfVec(a) *min_element(a.begin(), a.end())
-#define mp make_pair
-#define pb push_back
+#define mkp make_pair
+#define push push_back
+#define pop pop_back
 #define fr(i, n) for (int i = 0; i < n; i++)
 #define lcm(a, b) (a * b) / (__gcd(a, b))
 #define countBits(n) (log2(n) + 1)
 int mod = 1e9 + 7;
-// ASCII of 'a'-97,'z'-123,'A'-65,'Z'-90,'0'-48,'9'-57
+// ASCII of 'a'- 97,'z'- 123,'A'- 65,'Z'- 90,'0'- 48,'9'- 57
 
 void DhirajThorat()
 {
@@ -33,29 +34,37 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int n, k;
-    cin >> n >> k;
+    string s;
+    cin >> s;
 
-    vector<pair<int, int>> arr(n);
+    int pos1 = -1, pos2 = -1;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < s.length() - 1; i++)
     {
-        cin >> arr[i].first;
-        arr[i].second = i;
+        if (s[i] != '0' && s[i + 1] != '0')
+        {
+            pos1 = i;
+            break;
+        }
     }
 
-    sort(arr.begin(), arr.end());
-    int cnt = 0;
-    for (int i = 0; i < n - 1; i++)
+    for (int i = s.length() - 1; i > 0; i--)
     {
-        if (arr[i].second + 1 != arr[i + 1].second)
-            cnt++;
+        if ((s[i] - '0' + s[i - 1] - '0') > 9)
+        {
+            pos2 = i - 1;
+            break;
+        }
     }
 
-    if (k > cnt)
-        cout << "YES";
+    if (pos2 != -1)
+    {
+        cout << s.substr(0, pos2) << (s[pos2] - '0' + s[pos2 + 1] - '0') << s.substr(pos2 + 2, s.length() - pos2 - 2);
+    }
     else
-        cout << "NO";
+    {
+        cout << s.substr(0, pos1) << (s[pos1] - '0' + s[pos1 + 1] - '0') << s.substr(pos1 + 2, s.length() - pos1 - 1);
+    }
 }
 
 int32_t main()

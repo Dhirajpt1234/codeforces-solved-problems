@@ -33,35 +33,19 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int n, k;
-    cin >> n >> k;
+    int x, y, a, b;
+    cin >> x >> y >> a >> b;
 
-    vector<pair<int, int>> arr(n);
-
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i].first;
-        arr[i].second = i;
-    }
-
-    sort(arr.begin(), arr.end());
-    int cnt = 0;
-    for (int i = 0; i < n - 1; i++)
-    {
-        if (arr[i].second + 1 != arr[i + 1].second)
-            cnt++;
-    }
-
-    if (k > cnt)
-        cout << "YES";
-    else
-        cout << "NO";
+    int diff = max(x, y) - min(x, y);
+    int ansb = (min(x, y) * b) + (diff * a);
+    int ansa = (x + y) * a;
+    cout << min(ansa, ansb);
 }
 
 int32_t main()
 {
 
-    // fastIO;
+    fastIO;
     DhirajThorat();
     int O_O = 1;
     cin >> O_O;
