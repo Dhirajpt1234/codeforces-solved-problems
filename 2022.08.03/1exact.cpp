@@ -34,7 +34,23 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    
+    int arr[3];
+    fr(i, 3)
+    {
+        cin >> arr[i];
+    }
+
+    int m;
+    cin >> m;
+
+    sort(arr, arr + 3);
+    int a = arr[0], b = arr[1], c = arr[2];
+    if (((c - (a + b + 1)) <= m) && (m <= a + b + c - 3))
+        cout << "YES";
+    else
+    {
+        cout << "NO";
+    }
 }
 
 int32_t main()
