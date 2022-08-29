@@ -39,45 +39,34 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int n, k, x;
-    cin >> n >> k >> x;
+    int n, k;
+    cin >> n;
+    cin >> k;
 
-    vi arr(n);
-    fr(i, n) { cin >> arr[i]; }
-
-    sort(arr.begin(), arr.end());
-    int cnt = 0, cnt2 = 0;
-    int split = 1, split2 = 1;
-
-    // fr(i, n) { cout << arr[i] << ' '; }
-    vi diff;
-    fr(i, n - 1)
+    if (n % 2 == 0 && (n / 2 % 2 == 0))
     {
-        if (arr[i + 1] - arr[i] > x)
-            diff.push_back(arr[i + 1] - arr[i]);
+        cout << n / 2 << ' ' << n / 4 << ' ' << n / 4;
     }
-
-    sort(diff.begin(), diff.end());
-
-    fr(i, diff.size())
+    else if (n % 2 == 1 && (n / 2 % 2 == 0))
     {
-        cnt += (((diff[i] + x - 1) / x) - 1);
-        if (cnt > k)
-        {
-            split++;
-        }
+        cout << n / 2 << ' ' << n / 2 << ' ' << 1;
     }
-
-    cout << split;
+    else if (n % 2 == 0 && (n / 2 % 2 == 1))
+    {
+        cout << n / 2 - 1 << ' ' << n / 2 - 1 << ' ' << 2;
+    }
+    else
+    {
+        cout << n / 2 << ' ' << n / 2 << ' ' << 1;
+    }
 }
-
 int32_t main()
 {
 
     fastIO;
     DhirajThorat();
     int O_O = 1;
-    // cin >> O_O;
+    cin >> O_O;
     while (O_O--)
     {
         Dhiraj();

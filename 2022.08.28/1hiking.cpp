@@ -39,45 +39,54 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int n, k, x;
-    cin >> n >> k >> x;
+
+    int n;
+    cin >> n;
 
     vi arr(n);
     fr(i, n) { cin >> arr[i]; }
 
-    sort(arr.begin(), arr.end());
-    int cnt = 0, cnt2 = 0;
-    int split = 1, split2 = 1;
-
-    // fr(i, n) { cout << arr[i] << ' '; }
-    vi diff;
-    fr(i, n - 1)
+    if (arr[0] == 1)
     {
-        if (arr[i + 1] - arr[i] > x)
-            diff.push_back(arr[i + 1] - arr[i]);
+        cout << n + 1 << ' ';
+        fr(i, n) { cout << i + 1 << ' '; }
+        return;
     }
-
-    sort(diff.begin(), diff.end());
-
-    fr(i, diff.size())
+    else if (arr[n - 1] == 0)
     {
-        cnt += (((diff[i] + x - 1) / x) - 1);
-        if (cnt > k)
+        fr(i, n + 1)
+                cout
+            << i + 1 << ' ';
+        return;
+    }
+    else
+    {
+        fr(i, n - 1)
         {
-            split++;
+            if ((arr[i] == 0) && (arr[i + 1] == 1))
+            {
+                for (int j = 0; j <= i; j++)
+                    cout << j + 1 << ' ';
+                cout << n + 1 << ' ';
+                for (int j = i + 1; j < n; j++)
+                {
+                    cout << j + 1 << ' ';
+                }
+                return;
+            }
         }
     }
 
-    cout << split;
+    cout << -1;
 }
 
 int32_t main()
 {
 
-    fastIO;
+    // fastIO;
     DhirajThorat();
     int O_O = 1;
-    // cin >> O_O;
+    cin >> O_O;
     while (O_O--)
     {
         Dhiraj();

@@ -8,7 +8,10 @@ typedef pair<int, int> pii;
 typedef vector<vi> vvi;
 typedef vector<pii> vpii;
 
-#define fastIO  ios_base::sync_with_stdio(0);  cin.tie(0); cout.tie(0);
+#define fastIO                    \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
 #define maxOfVec(a) *max_element(a.begin(), a.end())
 #define minOfVec(a) *min_element(a.begin(), a.end())
 #define mkp make_pair
@@ -36,8 +39,41 @@ void DhirajThorat()
 
 void Dhiraj()
 {
+    int n;
+    cin >> n;
 
-    
+    string s;
+    cin >> s;
+
+    for (int k = 1; k < n; k++)
+    {
+        string temp = "a";
+        unordered_map<string, int> mp;
+        for (int i = 0; i + k < n; i++)
+        {
+            mp[s.substr(i, k)]++;
+        }
+
+        for (int i = 0; i + k < n; i++)
+        {
+            if (mp.find(temp) != mp.end())
+            {
+                char last = temp[temp.length() - 1];
+                last = char(last + 1);
+                if (last == 'z')
+                {
+
+                    break;
+                }
+                temp[temp.length() - 1] = last;
+            }
+            else
+            {
+                cout << temp;
+                return;
+            }
+        }
+    }
 }
 
 int32_t main()

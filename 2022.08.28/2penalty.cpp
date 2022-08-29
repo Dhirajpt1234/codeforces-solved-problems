@@ -39,36 +39,62 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int n, k, x;
-    cin >> n >> k >> x;
+    string s;
+    cin >> s;
+    int n = s.length();
+    int one1 = 0, two1 = 0;
+    int one2 = 0, two2 = 0;
+    int rem1 = 5, rem2 = 5;
+    int ans1 = n, ans2 = n;
 
-    vi arr(n);
-    fr(i, n) { cin >> arr[i]; }
-
-    sort(arr.begin(), arr.end());
-    int cnt = 0, cnt2 = 0;
-    int split = 1, split2 = 1;
-
-    // fr(i, n) { cout << arr[i] << ' '; }
-    vi diff;
-    fr(i, n - 1)
+    // defeat 2nd every time.
+    fr(i, n)
     {
-        if (arr[i + 1] - arr[i] > x)
-            diff.push_back(arr[i + 1] - arr[i]);
-    }
-
-    sort(diff.begin(), diff.end());
-
-    fr(i, diff.size())
-    {
-        cnt += (((diff[i] + x - 1) / x) - 1);
-        if (cnt > k)
+        if (i & 1)
         {
-            split++;
+            if (s[i] == '1')
+                two1++;
+
+            rem2--;
         }
+        else
+        {
+            if (s[i] == '1' || s[i] == '?')
+                one1++;
+            rem1--;
+        }
+
+        if (one1 > two1 + (10 - i) / 2)
+            ans1 = min(ans1, i + 1);
+        else if (two1 > one1 + (9 - i) / 2)
+            ans1 = min(ans1, i + 1);
+    }
+    rem1 = 5;
+    rem2 = 5;
+    // defeat 1st;
+    fr(i, n)
+    {
+        if (i & 1)
+        {
+            if (s[i] == '1' || s[i] == '?')
+            {
+                two2++;
+            }
+            rem2--;
+        }
+        else
+        {
+            if (s[i] == '1')
+                one2++;
+            rem1--;
+        }
+        if (one2 > two2 + (10 - i) / 2)
+            ans2 = min(ans2, i + 1);
+        else if (two2 > one2 + (9 - i) / 2)
+            ans2 = min(ans2, i + 1);
     }
 
-    cout << split;
+    cout << min(ans1, ans2);
 }
 
 int32_t main()
@@ -77,7 +103,7 @@ int32_t main()
     fastIO;
     DhirajThorat();
     int O_O = 1;
-    // cin >> O_O;
+    cin >> O_O;
     while (O_O--)
     {
         Dhiraj();
