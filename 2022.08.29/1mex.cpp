@@ -45,29 +45,68 @@ void Dhiraj()
     string s;
     cin >> s;
 
-    for (int k = 1; k < n; k++)
+    // mex for the string of the length 1
+    int count[26] = {0};
+    fr(i, n)
     {
-        string temp = "a";
-        unordered_map<string, int> mp;
-        for (int i = 0; i + k < n; i++)
+        count[s[i] - 'a'] = 1;
+    }
+    // fr(i, 26) { cout << count[i] << ' '; }
+    for (int i = 0; i < 26; i++)
+    {
+        if (count[i] == 0)
         {
-            mp[s.substr(i, k)]++;
+            cout << char('a' + i);
+            return;
         }
+    }
 
-        for (int i = 0; i + k < n; i++)
+    // mex for the string of the length 2;
+    set<string> st;
+    for (int i = 0; i < n - 1; i++)
+    {
+        string temp = "";
+        temp.push_back(s[i]);
+        temp.push_back(s[i + 1]);
+        st.insert(temp);
+    }
+
+    for (int i = 0; i < 26; i++)
+    {
+        for (int j = 0; j < 26; j++)
         {
-            if (mp.find(temp) != mp.end())
-            {
-                char last = temp[temp.length() - 1];
-                last = char(last + 1);
-                if (last == 'z')
-                {
+            string temp = "";
+            temp.push_back(char('a' + i));
+            temp.push_back(char('a' + j));
 
-                    break;
-                }
-                temp[temp.length() - 1] = last;
+            if (st.find(temp) == st.end())
+            {
+                cout << temp;
+                return;
             }
-            else
+        }
+    }
+
+    // mex for the string of the length 3;
+    st.clear();
+    for (int i = 0; i < n - 2; i++)
+    {
+        string temp = "";
+        temp.push_back(s[i]);
+        temp.push_back(s[i + 1]);
+        temp.push_back(s[i + 2]);
+        st.insert(temp);
+    }
+
+    for (int i = 0; i < 26; i++)
+    {
+        for (int j = 0; j < 26; j++)
+        {
+            string temp = "a";
+            temp.push_back(char('a' + i));
+            temp.push_back(char('a' + j));
+
+            if (st.find(temp) == st.end())
             {
                 cout << temp;
                 return;
