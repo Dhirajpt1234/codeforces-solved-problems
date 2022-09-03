@@ -39,61 +39,62 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int a, s;
-    cin >> a >> s;
-    vector<int> ans;
-    while (s > 0)
-    {
-        int u = s % 10;
-        s /= 10;
 
-        int l = a % 10;
-        a /= 10;
-        if (u >= l)
+    int n;
+    cin >> n;
+
+    int flag = 1;
+    vi a(n), b(n);
+    fr(i, n) { cin >> a[i]; }
+    fr(i, n)
+    {
+        cin >> b[i];
+        if (a[i] != b[i])
+            flag = 0;
+    }
+
+    if (flag)
+    {
+        cout << "YES";
+        return;
+    }
+
+    fr(i, n)
+    {
+        if (a[i] > b[i])
         {
-            ans.emplace_back(u - l);
+            cout << "NO";
+            return;
+        }
+    }
+
+    fr(i, n)
+    {
+        if (i < (n - 1))
+        {
+            if ((b[i] - b[i + 1]) > 1 && a[i] != b[i])
+            {
+                cout << "NO";
+                return;
+            }
         }
         else
         {
-
-            u = u + (s % 10) * 10;
-            s /= 10;
-
-            if (l < u && u >= 10 && u < 19)
+            if (b[i] - b[0] > 1 && a[i] != b[i])
             {
-                ans.emplace_back(u - l);
-            }
-            else
-            {
-                cout << -1;
+                cout << "NO";
                 return;
             }
         }
     }
 
-    for (auto it : ans)
-        cout << it;
-    cout << endl;
-
-    if (a > 0)
-    {
-        cout << -1;
-        return;
-    }
-
-    while (ans.back() == 0)
-    {
-        ans.pop_back();
-    }
-
-    for (int i = ans.size() - 1; i >= 0; i--)
-        cout << ans[i];
+    cout << "YES";
 }
 
 int32_t main()
 {
 
-    // fastIO;
+    fastIO;
     DhirajThorat();
     int O_O = 1;
     cin >> O_O;

@@ -39,61 +39,17 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int a, s;
-    cin >> a >> s;
-    vector<int> ans;
-    while (s > 0)
-    {
-        int u = s % 10;
-        s /= 10;
 
-        int l = a % 10;
-        a /= 10;
-        if (u >= l)
-        {
-            ans.emplace_back(u - l);
-        }
-        else
-        {
+    int n;
+    cin >> n;
 
-            u = u + (s % 10) * 10;
-            s /= 10;
-
-            if (l < u && u >= 10 && u < 19)
-            {
-                ans.emplace_back(u - l);
-            }
-            else
-            {
-                cout << -1;
-                return;
-            }
-        }
-    }
-
-    for (auto it : ans)
-        cout << it;
-    cout << endl;
-
-    if (a > 0)
-    {
-        cout << -1;
-        return;
-    }
-
-    while (ans.back() == 0)
-    {
-        ans.pop_back();
-    }
-
-    for (int i = ans.size() - 1; i >= 0; i--)
-        cout << ans[i];
+    cout << 2 * (n / 2) + 2 * (n / 3) + n;
 }
 
 int32_t main()
 {
 
-    // fastIO;
+    fastIO;
     DhirajThorat();
     int O_O = 1;
     cin >> O_O;

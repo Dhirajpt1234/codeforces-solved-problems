@@ -39,55 +39,60 @@ void DhirajThorat()
 
 void Dhiraj()
 {
-    int a, s;
-    cin >> a >> s;
-    vector<int> ans;
-    while (s > 0)
+    int n, k, r, c;
+    cin >> n >> k >> r >> c;
+
+    char arr[n + 1][n + 1] = {0};
+    int rem = (r + c) % k;
+    for (int i = r; i <= n; i++)
     {
-        int u = s % 10;
-        s /= 10;
-
-        int l = a % 10;
-        a /= 10;
-        if (u >= l)
+        for (int j = 1; j <= n; j++)
         {
-            ans.emplace_back(u - l);
-        }
-        else
-        {
-
-            u = u + (s % 10) * 10;
-            s /= 10;
-
-            if (l < u && u >= 10 && u < 19)
+            // cout << rem << " rem " << endl;
+            int s = i + j;
+            if ((s % k) == rem)
             {
-                ans.emplace_back(u - l);
+                // cout << " --1-- <<" << i << " " << j << endl;
+                arr[i][j] = 'X';
             }
             else
             {
-                cout << -1;
-                return;
+                // cout << " --2-- <<" << i << " " << j << endl;
+                arr[i][j] = '.';
             }
         }
+        rem += 2;
+        rem %= k;
     }
 
-    for (auto it : ans)
-        cout << it;
-    cout << endl;
-
-    if (a > 0)
+    for (int i = 1; i < r; i++)
     {
-        cout << -1;
-        return;
+        for (int j = 1; j <= n; j++)
+        {
+            int s = i + j;
+            if (s % k == rem)
+            {
+                // cout << " --1-- <<" << i << " " << j << endl;
+                arr[i][j] = 'X';
+            }
+            else
+            {
+                // cout << " --2-- <<" << i << " " << j << endl;
+                arr[i][j] = '.';
+            }
+        }
+        rem += 2;
+        rem %= k;
     }
 
-    while (ans.back() == 0)
+    frs(i, 1, n + 1)
     {
-        ans.pop_back();
+        frs(j, 1, n + 1)
+        {
+            cout << arr[i][j];
+        }
+        cout << endl;
     }
-
-    for (int i = ans.size() - 1; i >= 0; i--)
-        cout << ans[i];
 }
 
 int32_t main()
@@ -100,6 +105,6 @@ int32_t main()
     while (O_O--)
     {
         Dhiraj();
-        cout << '\n';
+        // cout << '\n';
     }
 }
